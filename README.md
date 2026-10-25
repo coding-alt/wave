@@ -87,9 +87,12 @@ IV:      "0000000000000000"（ECB 模式实际不使用）
 ```bash
 cd app
 ./build.sh          # 产出 app/build/小旋风收音机.app
+./package.sh        # 再打包为 app/build/小旋风收音机-1.0.dmg
 ```
 
-只依赖 Xcode Command Line Tools（`swiftc` / `iconutil`）。
+只依赖 Xcode Command Line Tools（`swiftc` / `iconutil` / `hdiutil`）。
+
+`package.sh` 会生成带安装界面的 DMG：640×420 窗口、拖拽到 Applications 的引导背景、自定义卷图标，图标位置与窗口尺寸写入 `.DS_Store`。
 
 ### 项目结构
 
@@ -104,7 +107,9 @@ cd app
 │   └── categories.json       # 分类接口真实返回快照
 └── app/
     ├── build.sh                  # 打包成 .app（含生成图标、ad-hoc 签名）
+    ├── package.sh                # 打包成带安装界面的 DMG
     ├── scripts/makeicon.swift    # 程序化生成 App 图标
+    ├── scripts/makedmgbg.swift   # 程序化生成 DMG 背景图
     ├── Resources/AppIcon.icns
     └── Sources/
         ├── ILAPI.swift           # AES + 接口封装 + 数据模型
