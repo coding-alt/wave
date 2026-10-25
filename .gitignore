@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# 逆向中间产物（体积大，不入库）
+re/
+blutter/
+blutter_out/
+*.apk
+*.zip
+*.tar.gz
+
+# 构建产物
+app/build/
+*.o
+*.dSYM/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
